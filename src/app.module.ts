@@ -1,9 +1,13 @@
-import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppDataSource } from './config/database.config';
 import { AppController } from './app.controller';
-
+import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { PlayerModule } from './player/player.module';
+import { QuizModule } from './quiz/quiz.module';
+import { ScoreModule } from './score/score.module';
+import { QuestionModule } from './questions/question.module';
+import { QuizGateway } from './socket/gateway';
 
 @Module({
   imports: [
@@ -11,9 +15,12 @@ import { AppController } from './app.controller';
     TypeOrmModule.forRoot({
       ...AppDataSource.options,
     }),
-
+    PlayerModule,
+    QuizModule,
+    QuestionModule,
+    ScoreModule,
   ],
   controllers: [AppController],
-  providers: [],
+  providers: [QuizGateway]
 })
 export class AppModule { }

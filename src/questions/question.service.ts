@@ -19,8 +19,8 @@ export class QuestionService {
 
         if (category) query.andWhere('q.category = :category', { category });
         query.orderBy('RAND()');
-        if (limit) query.limit(limit);
-        else query.limit(20);
+        query.limit(Number(limit ?? 20));
+
 
         return query.getMany();
     }

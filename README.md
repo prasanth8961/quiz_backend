@@ -1,3 +1,6 @@
+# Quiz Backend API 
+
+
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
 </p>
@@ -5,29 +8,15 @@
 [circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
 [circleci-url]: https://circleci.com/gh/nestjs/nest
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+ <p align="center">A fast and scalable backend for managing quizzes, questions, and players with real-time support and easy API integration.</p>
 
-## Description
-
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+   
 
 ## Project setup
 
 ```bash
+$ git clone https://github.com/prasanth8961/quiz_backend.git
+$ cd quiz_backend
 $ npm install
 ```
 
@@ -44,55 +33,221 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
-## Run tests
+Base URL: [https://quizbackend-production-0bdc.up.railway.app](https://quizbackend-production-0bdc.up.railway.app)
 
-```bash
-# unit tests
-$ npm run test
+## API Status
 
-# e2e tests
-$ npm run test:e2e
+**Endpoint:** `/`
+**Method:** `GET`
+**Response:**
 
-# test coverage
-$ npm run test:cov
+```
+{
+  "success": true,
+  "version": "0.0.1",
+  "message": "API is running successfully"
+}
 ```
 
-## Deployment
+## Players
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+### Create New Player
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+**Endpoint:** `/players/create`
+**Method:** `POST`
 
-```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+
+**Response:**
+
+```
+{
+  "id": "d81c620a-d5ce-4c26-8039-23c1cb729630",
+  "name": "BlueLion903",
+  "totalScore": 0,
+  "createdAt": "2025-08-30T06:07:00.000Z",
+  "scores": []
+}
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+### Get All Players
 
-## Resources
+**Endpoint:** `/players/all`
+**Method:** `GET`
+**Response:**
 
-Check out a few resources that may come in handy when working with NestJS:
+```
+[
+  {
+    "id": "0b23ec9c-bac0-40fe-9ca9-196f3c549bc4",
+    "name": "FastElephant271",
+    "totalScore": 0,
+    "createdAt": "2025-08-29T10:52:45.000Z"
+  }
+]
+```
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+## Quiz
 
-## Support
+### Create Quiz
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+**Endpoint:** `/quiz/create`
+**Method:** `POST`
+**Request Body:**
 
-## Stay in touch
+```
+{
+  "startingAt": "2025-08-30T15:30:00.000Z",
+  "noOfQuestions": 10,
+  "categories": ["Science", "History"]
+}
+```
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+**Response:**
 
-## License
+```
+{
+  "roomKey": "KEAII"
+}
+```
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+### Join Quiz (Without Room Key)
+
+**Endpoint:** `/quiz/join`
+**Method:** `POST`
+**Request Body:**
+
+```
+{
+  "playerId": "6f7bb8ba-ee18-4541-b0a1-1f2a4663a745",
+  "roomKey": ""
+}
+```
+
+**Response:**
+
+```
+{
+  "quizId": "e694cba6-1fdc-4fbf-8547-2cd665236064",
+  "roomKey": "ZLDJKY",
+  "startingAt": "2025-08-29T10:08:00.000Z",
+  "questions": [
+    {
+      "id": "q36",
+      "title": "Who painted the ceiling of the Sistine Chapel?",
+      "options": {
+        "A": "Raphael",
+        "B": "Michelangelo",
+        "C": "Donatello",
+        "D": "Leonardo da Vinci"
+      },
+      "correctAnswer": "B",
+      "category": "Art",
+      "createdAt": "2025-08-28T03:46:07.000Z"
+    }
+  ]
+}
+```
+
+### Join Quiz (With Room Key)
+
+**Endpoint:** `/quiz/join`
+**Method:** `POST`
+**Request Body:**
+
+```
+{
+  "playerId": "6f7bb8ba-ee18-4541-b0a1-1f2a4663a745",
+  "roomKey": "JFLYAG"
+}
+```
+
+**Response:**
+
+```
+{
+  "quizId": "70d8e7a7-158c-4e3c-a7a1-c73fb3e7caff",
+  "roomKey": "JFLYAG",
+  "startingAt": "2025-08-30T15:30:00.000Z",
+  "questions": [
+    {
+      "id": "q68",
+      "title": "What is the chemical formula for water?",
+      "options": {
+        "A": "H2",
+        "B": "O2",
+        "C": "H2O",
+        "D": "CO2"
+      },
+      "correctAnswer": "C",
+      "category": "Science",
+      "createdAt": "2025-08-29T07:21:00.000Z"
+    }
+  ]
+}
+```
+
+## Scores
+
+### Get Top 5 Players of a Quiz
+
+**Endpoint:** `/scores/top5/:quizId`
+**Method:** `GET`
+**Example:** `/scores/top5/e694cba6-1fdc-4fbf-8547-2cd665236064`
+**Response:**
+
+```
+[
+  {
+    "playerId": "6d592447-9d98-41ea-932e-69a69e9d060b",
+    "name": "BlueTiger299",
+    "score": 0,
+    "totalScore": 0,
+    "joinedAt": "2025-08-28T10:21:00.000Z"
+  }
+]
+```
+
+### Leaderboard
+
+**Endpoint:** `/scores/leaderboard/:quizId`
+**Method:** `GET`
+**Example:** `/scores/leaderboard/b5e485d6-479a-4250-b71b-9f48d5fdc274`
+**Response:**
+
+```
+[
+  {
+    "playerId": "43396835-0e6b-4b62-91e0-2408ac5e0207",
+    "name": "BlueFox880",
+    "score": 0,
+    "totalScore": 0,
+    "joinedAt": "2025-08-28T06:07:06.000Z"
+  }
+]
+```
+
+## Environment Variables (NestJS)
+
+```
+DB_HOST=
+DB_PORT=
+DB_USER=
+DB_PASS=
+DB_NAME=
+```
+
+## Notes
+
+* All timestamps are in ISO 8601 format (`YYYY-MM-DDTHH:MM:SS.sssZ`).
+* `roomKey` is required to join a specific quiz.
+* `totalScore` represents cumulative score of a player.
+* Available categories:
+
+  * Science
+  * Math
+  * Geography
+  * Literature
+  * Art
+  * Technology
+  * Sports
+  * Food
